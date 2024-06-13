@@ -29,3 +29,8 @@ def test_create_vote(client):
     data = {'user_id': 1, 'supercar_id': 1}
     response = client.post('/votes', json=data)
     assert response.status_code == 201
+
+def test_create_comment(client):
+    data = {'user_id': 1, 'supercar_id': 1, 'text': 'This is a test comment'}
+    response = client.post('/comments', json=data)
+    assert response.status_code == 201
