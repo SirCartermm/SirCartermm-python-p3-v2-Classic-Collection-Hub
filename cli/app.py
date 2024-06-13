@@ -30,3 +30,12 @@ def like_supercar(supercar_id):
 @cli.command()
 @click.argument('supercar_id', type=int)
 @click.argument('comment_text', type=str)
+
+def comment_supercar(supercar_id, comment_text):
+    session = Session()
+    comment = Comment(supercar_id=supercar_id, comment_text=comment_text)
+    session.add(comment)
+    session.commit()
+
+if __name__ == '__main__':
+    cli()
