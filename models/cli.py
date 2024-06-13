@@ -1,36 +1,37 @@
 import argparse
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.exc import IntegrityError
+from error_handling import errorHandler
 
 def create_supercar():
     try:
         # ...
     except IntegrityError as e:
-        print(f"Error creating supercar: {e}")
+        errorHandler.handle_error("Error creating supercar: " + str(e), 400)
     except Exception as e:
-        print(f"Error creating supercar: {e}")
+        errorHandler.handle_exception(e)
 
 def get_supercars():
     try:
         # ...
     except Exception as e:
-        print(f"Error fetching supercars: {e}")
+        errorHandler.handle_error("Error fetching supercars: " + str(e), 400)
 
 def vote_supercar():
     try:
         # ...
     except IntegrityError as e:
-        print(f"Error voting on supercar: {e}")
+        errorHandler.handle_error("Error voting on supercar: " + str(e), 400)
     except Exception as e:
-        print(f"Error voting on supercar: {e}")
+        errorHandler.handle_exception(e)
 
 def comment_supercar():
     try:
         # ...
     except IntegrityError as e:
-        print(f"Error commenting on supercar: {e}")
+        errorHandler.handle_error("Error commenting on supercar: " + str(e), 400)
     except Exception as e:
-        print(f"Error commenting on supercar: {e}")
+        errorHandler.handle_exception(e)
 
 def main():
     parser = argparse.ArgumentParser(description='Classic Collection Hub CLI')
@@ -46,7 +47,7 @@ def main():
     elif args.action == 'comment_supercar':
         comment_supercar()
     else:
-        print('Invalid action')
+        errorHandler.handle_error("Invalid action", 400)
 
 if __name__ == '__main__':
     main()
