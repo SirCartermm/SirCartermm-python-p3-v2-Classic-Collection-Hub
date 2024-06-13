@@ -1,5 +1,5 @@
 import argparse
-import cli
+from . import cli  # Use relative import to import the cli module
 
 def main():
     parser = argparse.ArgumentParser(description='Classic Collection Hub CLI')
