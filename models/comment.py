@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import validates
+from error_handling import errorHandler
 
 Base = declarative_base()
 
@@ -13,10 +14,8 @@ class Comment(Base):
 
     @validates('comment_text')
     def validate_comment_text(self, key, comment_text):
-        if not isinstance(comment_text, str):
-            raise ValueError("Comment text must be a string")
         if not comment_text:
-            raise ValueError("Comment text cannot be empty")
+            errorHandler.handle_error("Comment text cannot be empty", 400)
         return comment_text.strip()
 
     def to_dict(self):
