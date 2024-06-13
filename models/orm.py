@@ -5,7 +5,14 @@ engine = create_engine('sqlite:///classic_collection_hub.db')
 Session = sessionmaker(bind=engine)
 
 def create_db():
-    Base.metadata.create_all(engine)
+    try:
+        Base.metadata.create_all(engine)
+    except Exception as e:
+        print(f"Error creating database: {e}")
 
 def get_session():
-    return Session()
+    try:
+        return Session()
+    except Exception as e:
+        print(f"Error creating session: {e}")
+        return None
