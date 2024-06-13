@@ -1,18 +1,36 @@
 import argparse
-from sqlalchemy import text
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy.exc import IntegrityError
 
 def create_supercar():
-    # ...
+    try:
+        # ...
+    except IntegrityError as e:
+        print(f"Error creating supercar: {e}")
+    except Exception as e:
+        print(f"Error creating supercar: {e}")
 
 def get_supercars():
-    # ...
+    try:
+        # ...
+    except Exception as e:
+        print(f"Error fetching supercars: {e}")
 
 def vote_supercar():
-    # ...
+    try:
+        # ...
+    except IntegrityError as e:
+        print(f"Error voting on supercar: {e}")
+    except Exception as e:
+        print(f"Error voting on supercar: {e}")
 
 def comment_supercar():
-    # ...
+    try:
+        # ...
+    except IntegrityError as e:
+        print(f"Error commenting on supercar: {e}")
+    except Exception as e:
+        print(f"Error commenting on supercar: {e}")
 
 def main():
     parser = argparse.ArgumentParser(description='Classic Collection Hub CLI')
