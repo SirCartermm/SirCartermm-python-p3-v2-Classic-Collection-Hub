@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Integer, Enum
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import validates
+from error_handling import errorHandler
 
 Base = declarative_base()
 
@@ -14,7 +15,7 @@ class Vote(Base):
     @validates('vote_type')
     def validate_vote_type(self, key, vote_type):
         if vote_type not in ['like', 'dislike']:
-            raise ValueError("Invalid vote type. Must be 'like' or 'dislike'")
+            errorHandler.handle_error("Invalid vote type. Must be 'like' or 'dislike'", 400)
         return vote_type
 
     def to_dict(self):
